@@ -1,0 +1,936 @@
+/* =================================================
+   ETAPA 1 — VARIÁVEIS & RESET GLOBAL
+================================================= */
+:root {
+    --primary-color: #b07d3a;
+    --secondary-color: #9a8c7a;
+    --dark-color: #3a3530;
+    --light-color: #f7efd9;
+    --cream-color: #f3e6d3;
+    --gold-color: #d4a843;
+    --border-color: #e8e2d8;
+    --font-display: 'Cormorant Garamond', serif;
+    --font-body: 'Montserrat', sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-body);
+    background-color: #f7efd9;
+    color: var(--dark-color);
+}
+
+/* =================================================
+   ETAPA 2 — UTILITÁRIOS DE COR
+   Classes reutilizáveis em qualquer elemento
+================================================= */
+.primary-color   { color: var(--primary-color) !important; }
+.secondary-color { color: var(--secondary-color) !important; }
+.light-color     { color: var(--light-color) !important; }
+
+.primary-bg-color   { background-color: var(--cream-color) !important; }
+.secondary-bg-color { background-color: var(--secondary-color) !important; }
+.dark-bg-color      { background-color: var(--dark-color) !important; }
+.light-bg-color     { background-color: var(--light-color) !important; }
+
+.destaque { background-color: #fff !important; }
+
+/* =================================================
+   ETAPA 3 — BARRA DE ANÚNCIO (topo da página)
+================================================= */
+#top-announcement {
+    background-color: #2c2c2c;
+    color: var(--gold-color);
+    font-family: var(--font-body);
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-align: center;
+    padding: 8px 16px;
+}
+
+/* =================================================
+   ETAPA 4 — NAVBAR PRINCIPAL
+   Logo + barra de busca + ícones (perfil, favoritos, carrinho)
+================================================= */
+#navbar {
+    background-color: var(--light-color);
+    border-bottom: 1px solid var(--border-color);
+    padding: 12px 0;
+}
+
+#navbar .navbar-brand img {
+    height: 70px;
+    width: auto;
+}
+
+#navbar-items {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+/* --- Barra de busca --- */
+
+#navbar-items {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex: 1;
+    width: 100%;
+}
+
+/* --- Barra de busca --- */
+#search-form {
+    position: relative;
+    align-items: center;
+    background: var(--cream-color);
+    border-radius: 30px;
+    border: 1px solid #d9d2c5;
+    padding: 6px 16px;
+    gap: 8px;
+    transition: border-color 0.2s;
+    width: 100%;
+    flex: 1;
+    margin: 0 20px;
+}
+
+#search-form:focus-within {
+    border-color: var(--primary-color);
+}
+
+#search-form .bi-search {
+    color: var(--secondary-color);
+    font-size: 0.85rem;
+}
+
+/* --- Input --- */
+#search-form .form-control {
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    color: var(--dark-color);
+    width: 100%;
+    padding: 4px 0;
+}
+
+#search-form .form-control::placeholder {
+    color: #b0a898;
+}
+
+/* --- Botão --- */
+#search-form .btn {
+    background-color: var(--primary-color);
+    color: #fff;
+    border: none;
+    border-radius: 20px;
+    font-family: var(--font-body);
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    padding: 6px 16px;
+}
+
+#search-form .btn:hover {
+    background-color: #8f6228;
+}
+/* --- Ícones (perfil, favoritos, carrinho) --- */
+#navbar .navbar-nav .nav-link {
+    color: var(--dark-color);
+    font-size: 1.2rem;
+    padding: 4px 10px;
+    position: relative;
+}
+
+#navbar .navbar-nav .nav-link:hover {
+    color: var(--primary-color);
+}
+
+.qty-info {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: var(--primary-color);
+    color: #fff;
+    font-size: 0.6rem;
+    font-weight: 700;
+    border-radius: 50%;
+    width: 16px;
+    height: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-body);
+}
+
+#bag-item {
+    position: relative;
+}
+
+/* =================================================
+   ETAPA 5 — NAVBAR INFERIOR (menu de categorias)
+   Home, Pintura, Desenho, Caligrafia, etc.
+================================================= */
+#bottom-navbar-container {
+    background-color: var(--dark-color) !important;
+    padding: 0 !important;
+}
+
+#bottom-navbar-container .container {
+    padding: 0 12px;
+}
+
+#bottom-navbar .navbar-nav {
+    gap: 0;
+}
+
+/* --- Links do menu --- */
+#bottom-navbar .nav-item.sobre > .nav-link {
+    color: #e8e2d8;
+    font-family: var(--font-body);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 13px 18px;
+    transition: color 0.2s, background 0.2s;
+}
+
+#bottom-navbar .nav-item.sobre > .nav-link:hover,
+#bottom-navbar .nav-item.sobre > .nav-link:focus {
+    color: var(--gold-color);
+    background-color: rgba(255, 255, 255, 0.06);
+}
+
+/* --- Dropdown padrão --- */
+#bottom-navbar .dropdown-menu {
+    background-color: #2c2c2c;
+    border: none;
+    border-top: 2px solid var(--primary-color);
+    border-radius: 0;
+    padding: 8px 0;
+    min-width: 410px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+    text-align: center;
+}
+
+#bottom-navbar-container .navbar-nav {
+    width: 100%;
+    display: flex;
+    justify-content: center; /* CENTRALIZA */
+}
+
+#bottom-navbar .dropdown-item {
+    color: #ccc5b9;
+    font-family: var(--font-body);
+    font-size: 0.78rem;
+    font-weight: 400;
+    letter-spacing: 0.04em;
+    padding: 8px 20px;
+    transition: color 0.15s, background 0.15s;
+}
+
+#bottom-navbar .dropdown-item:hover {
+    background-color: rgba(176, 125, 58, 0.15);
+    color: var(--gold-color);
+}
+
+#bottom-navbar .dropdown-divider {
+    border-color: rgba(255, 255, 255, 0.1);
+    margin: 4px 0;
+}
+
+/* --- Mega dropdown (Pintura — com 2 colunas) --- */
+#mega-dropdown {
+    min-width: 600px;
+    padding: 20px 10px;
+}
+
+
+.mega-col-title {
+    color: var(--gold-color);
+    font-family: var(--font-body);
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 4px 20px 8px;
+    display: block;
+    white-space: nowrap;
+}
+
+/* --- Botão toggler (mobile) --- */
+.navbar-toggler {
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    padding: 4px 10px;
+}
+
+.navbar-toggler .bi-list {
+    color: #e8e2d8;
+    font-size: 1.4rem;
+}
+
+/* =================================================
+   ETAPA 6 — CARROSSEL / BANNERS PRINCIPAIS
+================================================= */
+#banners-container {
+    padding: 20px 12px 0;
+}
+
+#slider {
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+#slider .carousel-item img {
+    max-height: 480px;
+    object-fit: cover;
+    width: 100%;
+}
+
+/* --- Legenda do carrossel --- */
+.carousel-caption {
+    background: rgba(8, 115, 165, 0.45);
+    border-radius: 4px;
+    padding: 12px 20px;
+    bottom: 30px;
+}
+
+.carousel-caption h5 {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 1.6rem;
+    font-weight: 600;
+    color: #465f03;
+}
+
+.carousel-caption p {
+    font-family: var(--font-display);
+    font-size: 1.3rem;
+    color: #614105;
+    margin: 0;
+}
+
+/* =================================================
+   ETAPA 7 — MINI BANNERS
+   Nova Coleção | Promoções | Edição Limitada
+================================================= */
+#mini-banners {
+    margin-top: 16px;
+    padding: 0;
+}
+#mini-banner-3 h2 {
+    color: #fff !important;
+}
+
+#mini-banners .row {
+    gap: 12px;
+    flex-wrap: nowrap;
+}
+
+#mini-banner-1,
+#mini-banner-2,
+#mini-banner-3 {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-end;
+    padding: 24px;
+    border-radius: 8px;
+    flex: 1;
+    min-height: 180px;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+/* --- Imagem de fundo --- */
+#mini-banner-1 img,
+#mini-banner-2 img,
+#mini-banner-3 img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+    z-index: 0;
+    
+    
+}
+
+/* --- Hover na imagem: leve zoom --- */
+#mini-banner-1:hover img,
+#mini-banner-2:hover img,
+#mini-banner-3:hover img {
+    transform: scale(1.05);
+}
+
+/* --- Gradiente escuro sobre a imagem --- */
+#mini-banner-1::after,
+#mini-banner-3::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.65) 50%, rgba(0,0,0,0.15) 100%, transparent 100%) !important;
+    border-radius: 8px;
+    z-index: 1;
+}
+
+/* --- Textos e botão ficam acima do gradiente --- */
+#mini-banner-1 h2,
+#mini-banner-2 h2,
+#mini-banner-3 h2,
+#mini-banner-1 a,
+#mini-banner-2 a,
+#mini-banner-3 a {
+    position: relative;
+    z-index: 2;
+}
+
+/* --- Título --- */
+#mini-banner-1 h2,
+#mini-banner-2 h2,
+#mini-banner-3 h2 {
+    font-family: var(--font-display);
+    font-size: 1.6rem;
+    font-style: italic;
+    font-weight: 600;
+    color: #fff;
+    margin: 0 0 10px 0;
+    line-height: 1.2;
+    
+}
+
+/* --- Botão Compre Agora --- */
+#mini-banner-1 a,
+#mini-banner-2 a,
+#mini-banner-3 a {
+    font-family: var(--font-body);
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #fff;
+    text-decoration: none;
+    border: 1.5px solid var(--gold-color);
+    border-radius: 2px;
+    padding: 6px 16px;
+    transition: background 0.2s, color 0.2s;
+}
+
+#mini-banner-1 a:hover,
+#mini-banner-2 a:hover,
+#mini-banner-3 a:hover {
+    background-color: var(--gold-color);
+    color: var(--dark-color);
+}
+
+/* --- Mobile --- */
+@media (max-width: 767px) {
+    #mini-banners .row {
+        flex-wrap: wrap;
+    }
+
+    #mini-banner-1,
+    #mini-banner-2,
+    #mini-banner-3 {
+        flex: unset;
+        width: 100%;
+        min-height: 160px;
+    }
+}
+
+/* =================================================
+   ETAPA 8 — TÍTULOS DE SEÇÃO
+   Usado em Best Sellers, Novidades, etc.
+================================================= */
+.title {
+    font-family: var(--font-display);
+    font-size: 2rem;
+    font-weight: 600;
+    margin-bottom: 24px;
+    position: relative;
+    display: inline-block;
+}
+
+.title::after {
+    content: '';
+    position: absolute;
+    bottom: -6px;
+    left: 0;
+    width: 48px;
+    height: 2px;
+    background-color: var(--primary-color);
+}
+
+/* =================================================
+   ETAPA 9 — BEST SELLERS (seção de produtos)
+================================================= */
+#best-sellers {
+    padding: 48px 12px;
+}
+
+#best-sellers .row {
+    gap: 0;
+    row-gap: 20px;
+}
+
+/* =================================================
+   ETAPA 10 — CARDS DE PRODUTO
+   Usados em Best Sellers e Novidades
+================================================= */
+.card {
+    border: 1px solid var(--border-color) !important;
+    border-radius: 4px !important;
+    transition: box-shadow 0.25s, transform 0.25s;
+    height: 100%;
+}
+
+.card:hover {
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+    transform: translateY(-3px);
+}
+
+.card-img-top {
+    padding: 16px;
+    height: 200px;
+    object-fit: contain;
+    background-color: #faf8f4;
+}
+
+.card-body {
+    padding: 16px;
+}
+
+/* --- Textos do card --- */
+.card-category {
+    font-family: var(--font-body);
+    font-size: 0.68rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+}
+
+.card-title {
+    font-family: var(--font-display);
+    font-size: 1.05rem;
+    font-weight: 600;
+    line-height: 1.35;
+    margin-bottom: 10px;
+}
+
+/* --- Preços --- */
+.original-price {
+    font-size: 0.78rem;
+    text-decoration: line-through;
+    color: #aaa;
+    display: block;
+    margin-bottom: 2px;
+}
+
+.discount-price {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    display: block;
+    margin-bottom: 12px;
+}
+
+.card-text {
+    margin-bottom: 12px;
+    font-size: 1rem;
+    font-weight: 700;
+}
+
+/* --- Botão comprar --- */
+.btn-primary {
+    background-color: var(--dark-color) !important;
+    border-color: var(--dark-color) !important;
+    border-radius: 2px !important;
+    font-family: var(--font-body);
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 8px 18px;
+    transition: background-color 0.2s, border-color 0.2s;
+}
+
+.btn-primary:hover {
+    background-color: var(--primary-color) !important;
+    border-color: var(--primary-color) !important;
+}
+
+/* =================================================
+   ETAPA 11 — BANNER DESTAQUE (meio da página)
+================================================= */
+#bottom-banner {
+    position: relative;
+    min-height: 320px;
+    margin: 48px 0;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+/* --- Imagem de fundo --- */
+#bottom-banner img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    z-index: 0;
+}
+
+/* --- Overlay escuro sobre a imagem --- */
+#bottom-banner::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(40, 30, 20, 0.65);
+    z-index: 1;
+}
+
+/* --- Conteúdo acima do overlay --- */
+#bottom-banner .row {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    justify-content: center;
+    padding: 60px 20px;
+}
+
+#bottom-banner .col-12 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+/* --- Textos --- */
+#bottom-banner .offer-subtitle {
+    font-family: var(--font-body);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold-color);
+    margin-bottom: 12px;
+}
+
+#bottom-banner h2 {
+    font-family: var(--font-display);
+    font-size: 3.2rem;
+    font-weight: 600;
+    font-style: italic;
+    color: #fff;
+    margin-bottom: 12px;
+    text-shadow: 0 2px 12px rgba(0,0,0,0.4);
+}
+
+#bottom-banner p.secondary-color {
+    font-size: 0.9rem;
+    color: #d9d2c5 !important;
+    margin-bottom: 28px;
+    max-width: 480px;
+}
+
+/* --- Botão --- */
+#bottom-banner .btn-primary {
+    background-color: transparent !important;
+    border: 1.5px solid var(--gold-color) !important;
+    color: var(--gold-color) !important;
+    border-radius: 2px !important;
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    padding: 10px 32px;
+    transition: background 0.2s, color 0.2s;
+}
+
+#bottom-banner .btn-primary:hover {
+    background-color: var(--gold-color) !important;
+    color: var(--dark-color) !important;
+}
+
+/* --- Mobile --- */
+@media (max-width: 767px) {
+    #bottom-banner h2 {
+        font-size: 2.2rem;
+    }
+
+    #bottom-banner .row {
+        padding: 40px 16px;
+    }
+}
+/* =================================================
+   ETAPA 12 — NOVIDADES (grid de produtos)
+================================================= */
+#new-products {
+    padding: 0 12px 48px;
+}
+
+/* --- Banner lateral da seção --- */
+#new-products-banner {
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    background-color:#e0cba9;
+    border-radius: 4px;
+    padding: 32px 24px;
+    gap: 8px;
+}
+
+#new-products-banner p {
+    font-family: var(--font-body);
+    font-size: 0.8rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin: 0;
+}
+
+#new-products-banner h3 {
+    font-family: var(--font-display);
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: var(--dark-color);
+    margin: 0;
+}
+
+#new-products .row {
+    row-gap: 16px;
+}
+
+/* =================================================
+   ETAPA 13 — GALERIA (estilo Instagram)
+================================================= */
+#gallery {
+    padding: 0;
+    margin-bottom: 48px;
+}
+
+.image-container {
+    height: 200px;
+    background-color: var(--cream-color);
+    background-size: cover;
+    background-position: center;
+    cursor: pointer;
+    overflow: hidden;
+    transition: filter 0.3s;
+}
+
+.image-container:hover {
+    filter: brightness(0.85);
+}
+
+/* --- Imagens da galeria (troque pelas suas fotos) --- */
+#insta1 { background-image: url('../img/galeria1.jpg'); background-color: #e8e0d5; }
+#insta2 { background-image: url('../img/galeria2.webp'); background-color: #ddd6cb; }
+#insta3 { background-image: url('../img/galeria3.jpg'); background-color: #e8e0d5; }
+#insta4 { background-image: url('../img/galeria4.webp'); background-color: #ddd6cb; }
+#insta5 { background-image: url('../img/galeria5.jpg'); background-color: #e8e0d5; }
+#insta6 { background-image: url('../img/galeria6.webp'); background-color: #ddd6cb; }
+
+/* =================================================
+   ETAPA 14 — FOOTER
+================================================= */
+#footer {
+    background-color: #2c2c2c;
+    color: #e8e2d8;
+}
+
+/* --- Links do rodapé (Páginas, Central, Informações) --- */
+#footer-links-container {
+    padding: 48px 40px 32px;
+}
+
+.footer-column h3 {
+    font-family: var(--font-display);
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: #fff;
+    margin-bottom: 16px;
+}
+
+.footer-column ul li a {
+    font-family: var(--font-body);
+    font-size: 0.82rem;
+    color: var(--secondary-color);
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.footer-column ul li a:hover {
+    color: var(--gold-color);
+}
+
+#footer-center {
+    text-align: center;
+}
+
+.store-phone {
+    font-family: var(--font-body);
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--gold-color);
+}
+
+/* --- Newsletter --- */
+#newsletter-container {
+    background-color: #222;
+    padding: 28px 40px;
+    text-align: center;
+}
+
+#newsletter-container p {
+    font-family: var(--font-body);
+    font-size: 0.82rem;
+    letter-spacing: 0.06em;
+    margin-bottom: 12px;
+}
+
+#news-form {
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+#news-form .bi-envelope {
+    font-size: 1.1rem;
+}
+
+#news-form .form-control {
+    max-width: 280px;
+    background: #333;
+    border: 1px solid #444;
+    color: #e8e2d8;
+    border-radius: 2px;
+    font-family: var(--font-body);
+    font-size: 0.82rem;
+}
+
+#news-form .form-control::placeholder {
+    color: #888;
+}
+
+#news-form .btn {
+    background-color: var(--primary-color);
+    color: #fff;
+    border: none;
+    border-radius: 2px;
+    font-family: var(--font-body);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    padding: 7px 20px;
+}
+
+#news-form .btn:hover {
+    background-color: #8f6228;
+}
+
+/* --- Redes sociais --- */
+#social-container {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 18px;
+}
+
+#social-container i {
+    font-size: 1.3rem;
+    color: #888;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+#social-container i:hover {
+    color: var(--gold-color);
+}
+
+/* --- Copyright --- */
+#copy-container {
+    padding: 16px 12px;
+    text-align: center;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+#copy-container p {
+    font-family: var(--font-body);
+    font-size: 0.75rem;
+    color: #666;
+    margin: 0;
+}
+
+/* =================================================
+   ETAPA 15 — RESPONSIVIDADE
+   Ajustes para tablets e celulares
+================================================= */
+
+/* --- Tablet (até 991px) --- */
+@media (max-width: 991px) {
+    #navbar-items {
+        flex-wrap: wrap;
+        gap: 12px;
+    }
+
+    #search-form .form-control {
+        width: 160px;
+    }
+
+    #bottom-banner h2 {
+        font-size: 2rem;
+    }
+}
+
+/* --- Mobile (até 767px) --- */
+@media (max-width: 767px) {
+    #mini-banners .row {
+        flex-wrap: wrap;
+    }
+
+    #mini-banner-1,
+    #mini-banner-2,
+    #mini-banner-3 {
+        flex: unset;
+        width: 100%;
+    }
+
+    #bottom-banner {
+        padding: 40px 20px;
+        text-align: center;
+    }
+
+    #bottom-banner img {
+        margin-top: 24px;
+    }
+
+    .title {
+        font-size: 1.6rem;
+    }
+
+    #footer-links-container {
+        padding: 32px 20px;
+    }
+
+    #footer-center {
+        text-align: left;
+    }
+
+    #newsletter-container {
+        padding: 24px 20px;
+    }
+}
